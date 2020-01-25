@@ -1,3 +1,15 @@
+# Difference
+
+Words are randomly chosen from a text file called words_alpha.txt
+
+It now asks to play again with the same word and if not it will say what word it was. 
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
 # Unreal Engine Developer Course - Section 2 - Bull Cow Game
 
 This is the [Unreal Engine Developer]( http://gdev.tv/urcgithub) course – it started as a runaway success on Kickstarter and has gone on to become one of the bestselling Unreal courses on the internet! Continually updated in response to student suggestions, you will benefit from the fact we have already taught over 360,336 students game development, many shipping commercial games as a result.
