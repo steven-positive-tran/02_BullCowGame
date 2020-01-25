@@ -4,6 +4,10 @@ The game is a simple guess the word game based on Mastermind
 
 #pragma once
 #include <string>
+#include <fstream>
+#include <stdio.h>
+#include <stdlib.h> 
+#include <time.h>
 
 // to make syntax Unreal friendly
 using FString = std::string;
@@ -35,8 +39,10 @@ public:
 	int32 GetHiddenWordLength() const;
 	bool IsGameWon() const;
 	EGuessStatus CheckGuessValidity(FString) const;
-
+	FString GetWord();
+	
 	void Reset();
+	void GetWordFromText();
 	FBullCowCount SubmitValidGuess(FString);
 
 

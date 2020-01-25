@@ -2,6 +2,9 @@
 
 #include "FBullCowGame.h"
 #include <map>
+#include <algorithm>
+
+#include <iostream>
 
 // to make syntax Unreal friendly
 #define TMap std::map
@@ -15,18 +18,43 @@ bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 int32 FBullCowGame::GetMaxTries() const
 {
-	TMap<int32, int32> WordLengthToMaxTries{ {3,4}, {4,7}, {5,10}, {6,16}, {7,20} };
-	return WordLengthToMaxTries[MyHiddenWord.length()];
+	int32 WordLengthToMaxTries = (MyHiddenWord.length() * 1.5) + 1;
+	return WordLengthToMaxTries;
+}
+
+
+void FBullCowGame::GetWordFromText()
+{
+	//check how many lines
+	std::ifstream wordlist;
+	wordlist.open("words_alpha.txt");
+	int lines = std::count(std::istreambuf_iterator<char>(wordlist), std::istreambuf_iterator<char>(), '\n');
+	srand(time(NULL));
+	int32 random = (rand() % lines);
+
+	FString word;
+	wordlist.seekg(0, std::ios::beg);
+
+	for (int32 j = 0; j < random; j++)
+	{
+		wordlist.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+
+	std::getline(wordlist, MyHiddenWord);
+	wordlist.close();
+
 }
 
 void FBullCowGame::Reset()
 {
-	const FString HIDDEN_WORD = "plane"; // this MUST be an isogram
-	MyHiddenWord = HIDDEN_WORD;
-
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	return;
+}
+
+FString FBullCowGame::GetWord()
+{
+	return MyHiddenWord;
 }
 
 
